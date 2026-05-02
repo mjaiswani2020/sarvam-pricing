@@ -43,8 +43,9 @@ import {
   Users,
   Globe,
   ChevronDown,
+  Check,
 } from "lucide-react";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 type SidebarItem = {
   label: string;
@@ -249,23 +250,140 @@ const sidebarConfigs: Record<string, SidebarConfig> = {
   },
 };
 
-export default function Sidebar({ activeTab }: { activeTab: string }) {
+const productSwitcherItems = [
+  {
+    key: "indus",
+    label: "Indus",
+    description: "Consumer chat app",
+    icon: (
+      <div className="w-7 h-7 rounded-md bg-[#F97316] flex items-center justify-center shrink-0">
+        <span className="text-white text-[14px] font-semibold">स</span>
+      </div>
+    ),
+  },
+  {
+    key: "samvaad",
+    label: "Samvaad",
+    description: "Voice & chat agents",
+    icon: (
+      <div className="w-7 h-7 rounded-md bg-[#4CAF50] flex items-center justify-center shrink-0">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1.5" fill="none" />
+          <circle cx="7" cy="7" r="2" fill="white" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    key: "studio",
+    label: "Studio",
+    description: "Dubbing & content",
+    icon: (
+      <div className="w-7 h-7 rounded-md bg-[#4CAF50] flex items-center justify-center shrink-0">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1.5" fill="none" />
+          <circle cx="7" cy="7" r="2" fill="white" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    key: "akshar",
+    label: "Akshar",
+    description: "Document AI",
+    icon: (
+      <div className="w-7 h-7 rounded-md bg-[#4CAF50] flex items-center justify-center shrink-0">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="5" stroke="white" strokeWidth="1.5" fill="none" />
+          <circle cx="7" cy="7" r="2" fill="white" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    key: "apis",
+    label: "APIs",
+    description: "Build with our models",
+    icon: (
+      <div className="w-7 h-7 rounded-md bg-[#2A2A2A] flex items-center justify-center shrink-0">
+        <span className="text-white text-[10px] font-semibold font-mono">{"</>"}</span>
+      </div>
+    ),
+  },
+];
+
+type SidebarProps = {
+  activeTab: string;
+  onProductChange?: (product: string) => void;
+};
+
+export default function Sidebar({ activeTab, onProductChange }: SidebarProps) {
   const config = sidebarConfigs[activeTab] || sidebarConfigs.apis;
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    if (dropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [dropdownOpen]);
 
   return (
     <aside className="w-[200px] min-w-[200px] h-full bg-[#FAFAFA] border-r border-[#E8E8E8] flex flex-col">
       {/* Product header */}
-      <div className="px-3 pt-4 pb-3 flex items-center gap-2 cursor-pointer">
-        {config.productIcon}
-        <div className="flex-1 min-w-0">
-          <div className="text-[13px] font-medium text-[#1A1A1A] truncate">
-            {config.product}
+      <div className="relative" ref={dropdownRef}>
+        <div
+          className="px-3 pt-4 pb-3 flex items-center gap-2 cursor-pointer hover:bg-[#F0F0F0] transition-colors"
+          onClick={() => setDropdownOpen(!dropdownOpen)}
+        >
+          {config.productIcon}
+          <div className="flex-1 min-w-0">
+            <div className="text-[13px] font-medium text-[#1A1A1A] truncate">
+              {config.product}
+            </div>
+            <div className="text-[11px] text-[#999999] truncate">
+              {config.productSub}
+            </div>
           </div>
-          <div className="text-[11px] text-[#999999] truncate">
-            {config.productSub}
-          </div>
+          <ChevronDown
+            size={14}
+            className={`text-[#999999] shrink-0 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+          />
         </div>
-        <ChevronDown size={14} className="text-[#999999] shrink-0" />
+
+        {/* Product switcher dropdown */}
+        {dropdownOpen && (
+          <div className="absolute top-full left-2 right-2 z-50 bg-white border border-[#E8E8E8] rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)] p-1.5">
+            {productSwitcherItems.map((item) => {
+              const isActive = activeTab === item.key;
+              return (
+                <div
+                  key={item.key}
+                  className={`flex items-center gap-2.5 px-2.5 py-2 rounded-lg cursor-pointer transition-colors ${
+                    isActive ? "bg-[#F5F5F5]" : "hover:bg-[#F5F5F5]"
+                  }`}
+                  onClick={() => {
+                    onProductChange?.(item.key);
+                    setDropdownOpen(false);
+                  }}
+                >
+                  {item.icon}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-[13px] font-medium text-[#1A1A1A]">{item.label}</div>
+                    <div className="text-[11px] text-[#999999]">{item.description}</div>
+                  </div>
+                  {isActive && <Check size={16} className="text-[#1A1A1A] shrink-0" strokeWidth={2} />}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Navigation sections */}

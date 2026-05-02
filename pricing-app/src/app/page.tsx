@@ -32,10 +32,21 @@ export default function PricingPage() {
 
   const sidebarKey = getSidebarKey(activeTab, platformSubTab);
 
+  function handleProductChange(product: string) {
+    if (product === "indus") {
+      setActiveTab("indus");
+    } else if (product === "apis") {
+      setActiveTab("apis");
+    } else if (product === "samvaad" || product === "studio" || product === "akshar") {
+      setActiveTab("platform");
+      setPlatformSubTab(product);
+    }
+  }
+
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <Sidebar activeTab={sidebarKey} />
+      <Sidebar activeTab={sidebarKey} onProductChange={handleProductChange} />
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
