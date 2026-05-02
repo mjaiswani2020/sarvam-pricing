@@ -37,7 +37,6 @@ const plusPlan = {
     { text: "Document scanning", sub: "₹1.50/page from credits" },
     { text: "Reasoning mode and web search" },
     { text: "₹350 Sarvam credits/month" },
-    { text: "Sarvam Kaze glasses", sub: "Included, no extra fee" },
     { text: "Early access to new models" },
   ],
 };
@@ -114,10 +113,6 @@ const compareRows = [
   {
     label: "Commercial-use license",
     values: [false, false, true],
-  },
-  {
-    label: "Sarvam Kaze glasses",
-    values: [false, "Included", "Included"],
   },
   {
     label: "Sarvam Studio (dubbing, translation)",
