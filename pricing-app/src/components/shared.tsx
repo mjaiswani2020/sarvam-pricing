@@ -146,12 +146,12 @@ export function CompareTable({
           return (
             <div
               key={i}
-              className="border-b border-[#E8E8E8] bg-[#F8F8F8]"
+              className="border-b border-[#E8E8E8] border-t border-t-[#E8E8E8] bg-white"
               style={{
                 gridTemplateColumns: `1.8fr repeat(${columns.length}, 1fr)`,
               }}
             >
-              <div className="px-5 py-2 text-[10px] uppercase tracking-[0.12em] text-[#999999] font-medium">
+              <div className="px-5 py-2.5 text-[10px] uppercase tracking-[0.12em] text-[#999999] font-semibold">
                 {r.label}
               </div>
             </div>
