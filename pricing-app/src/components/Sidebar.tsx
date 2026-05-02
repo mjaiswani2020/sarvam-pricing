@@ -82,7 +82,8 @@ const sidebarConfigs: Record<string, SidebarConfig> = {
           { label: "Projects", icon: FolderOpen },
           { label: "Voice mode", icon: Mic },
           { label: "Library", icon: BookOpen },
-          { label: "Discover", icon: Compass, active: true },
+          { label: "Discover", icon: Compass },
+          { label: "Pricing", icon: DollarSign, active: true },
         ],
       },
     ],
@@ -156,6 +157,7 @@ const sidebarConfigs: Record<string, SidebarConfig> = {
           { label: "Conversations", icon: MessagesSquare },
           { label: "Analytics", icon: LineChart },
           { label: "Evaluations", icon: ClipboardCheck },
+          { label: "Pricing", icon: DollarSign, active: true },
         ],
       },
     ],
@@ -184,6 +186,7 @@ const sidebarConfigs: Record<string, SidebarConfig> = {
         items: [
           { label: "Brand kits", icon: Palette },
           { label: "Assets", icon: Image },
+          { label: "Pricing", icon: DollarSign, active: true },
         ],
       },
     ],
@@ -219,6 +222,7 @@ const sidebarConfigs: Record<string, SidebarConfig> = {
         items: [
           { label: "Audit logs", icon: ScrollText },
           { label: "Team / Reviewers", icon: Users },
+          { label: "Pricing", icon: DollarSign, active: true },
         ],
       },
     ],
