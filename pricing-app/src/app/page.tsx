@@ -32,6 +32,13 @@ export default function PricingPage() {
 
   const sidebarKey = getSidebarKey(activeTab, platformSubTab);
 
+  const platformCredits: Record<string, { label: string; amount: string }> = {
+    samvaad: { label: "Samvaad credits", amount: "₹2,450" },
+    studio: { label: "Studio credits", amount: "₹1,800" },
+    akshar: { label: "Akshar credits", amount: "₹3,200" },
+  };
+  const activePlatformCredit = platformCredits[sidebarKey] ?? null;
+
   function handleProductChange(product: string) {
     if (product === "indus") {
       setActiveTab("indus");
@@ -58,17 +65,27 @@ export default function PricingPage() {
               Simple, transparent pricing. Credits never expire.
             </p>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 bg-[#F5F5F5] rounded-full px-4 py-1.5">
-              <span className="text-[12px] text-[#6B6B6B]">API credits</span>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 rounded-full px-4 py-1.5 border border-[#E8E8E8]">
+              <span className="text-[12px] text-[#999999]">API credits</span>
               <span className="text-[13px] font-medium text-[#1A1A1A]">
                 ₹994.49
               </span>
             </div>
+            {activePlatformCredit && (
+              <div className="flex items-center gap-2 rounded-full px-4 py-1.5 border border-[#E8E8E8]">
+                <span className="text-[12px] text-[#999999]">
+                  {activePlatformCredit.label}
+                </span>
+                <span className="text-[13px] font-medium text-[#1A1A1A]">
+                  {activePlatformCredit.amount}
+                </span>
+              </div>
+            )}
             <button className="text-[13px] text-[#F97316] font-medium hover:underline cursor-pointer">
               + Add credits
             </button>
-            <div className="flex items-center gap-1 text-[13px] text-[#6B6B6B]">
+            <div className="flex items-center gap-1 rounded-full px-3 py-1 bg-[#F5F5F5] text-[12px] font-medium text-[#6B6B6B]">
               <span>₹</span>
               <span>INR</span>
             </div>
