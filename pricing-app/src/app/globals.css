@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Matter';
+  src: url('../fonts/MatterRegular.0692aaf2.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Matter';
+  src: url('../fonts/MatterMedium.1b78bcc1.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Season Mix';
+  src: url('../fonts/SeasonMix-Medium.67ababab.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --font-matter: 'Matter', system-ui, -apple-system, sans-serif;
+  --font-season: 'Season Mix', system-ui, sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, monospace;
+
+  --color-bg-white: #FFFFFF;
+  --color-bg-sidebar: #FAFAFA;
+  --color-bg-hover: #F5F5F5;
+  --color-bg-active: #F0F0F0;
+  --color-bg-stripe: #F8F8F8;
+
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-muted: #999999;
+  --color-text-placeholder: #ABABAB;
+
+  --color-border: #E8E8E8;
+  --color-divider: #EEEEEE;
+  --color-border-button: #D4D4D4;
+
+  --color-accent-orange: #F97316;
+  --color-accent-coral: #E8604C;
+  --color-accent-green: #6BBF6B;
+  --color-accent-yellow: #E8C84C;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-matter);
+  color: var(--color-text-primary);
+  background: var(--color-bg-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
