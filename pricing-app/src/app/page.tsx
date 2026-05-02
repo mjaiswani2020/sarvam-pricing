@@ -20,40 +20,25 @@ const mainTabs = [
   { id: "enterprise", label: "Enterprise deployments", icon: Server },
 ];
 
-function getSidebarKey(tab: string, platformSubTab: string): string {
-  if (tab === "platform") return platformSubTab;
-  if (tab === "enterprise") return "enterprise";
-  return tab;
-}
+const platformCredits: Record<string, { label: string; amount: string }> = {
+  samvaad: { label: "Samvaad credits", amount: "₹2,450" },
+  studio: { label: "Studio credits", amount: "₹1,800" },
+  akshar: { label: "Akshar credits", amount: "₹3,200" },
+};
 
 export default function PricingPage() {
+  // Sidebar product — only changes via the sidebar dropdown
+  const [activeProduct, setActiveProduct] = useState("apis");
+  // Pricing tab — only changes via the top tab bar or platform sub-tabs
   const [activeTab, setActiveTab] = useState("apis");
   const [platformSubTab, setPlatformSubTab] = useState("samvaad");
 
-  const sidebarKey = getSidebarKey(activeTab, platformSubTab);
-
-  const platformCredits: Record<string, { label: string; amount: string }> = {
-    samvaad: { label: "Samvaad credits", amount: "₹2,450" },
-    studio: { label: "Studio credits", amount: "₹1,800" },
-    akshar: { label: "Akshar credits", amount: "₹3,200" },
-  };
-  const activePlatformCredit = platformCredits[sidebarKey] ?? null;
-
-  function handleProductChange(product: string) {
-    if (product === "indus") {
-      setActiveTab("indus");
-    } else if (product === "apis") {
-      setActiveTab("apis");
-    } else if (product === "samvaad" || product === "studio" || product === "akshar") {
-      setActiveTab("platform");
-      setPlatformSubTab(product);
-    }
-  }
+  const activePlatformCredit = platformCredits[activeProduct] ?? null;
 
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <Sidebar activeTab={sidebarKey} onProductChange={handleProductChange} />
+      <Sidebar activeTab={activeProduct} onProductChange={setActiveProduct} />
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
