@@ -50,7 +50,7 @@ export default function PricingPage() {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 bg-[#F5F5F5] rounded-full px-4 py-1.5">
               <span className="text-[12px] text-[#6B6B6B]">API credits</span>
-              <span className="text-[13px] font-medium text-[#1A1A1A] font-[family-name:var(--font-mono)]">
+              <span className="text-[13px] font-medium text-[#1A1A1A]">
                 ₹994.49
               </span>
             </div>

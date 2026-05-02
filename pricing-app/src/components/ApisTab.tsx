@@ -273,7 +273,7 @@ function ModelCard({
           <span className="text-[11px] text-[#999999] uppercase tracking-wider block mb-1">
             INPUT
           </span>
-          <span className="text-[15px] font-medium text-[#1A1A1A] font-[family-name:var(--font-mono)]">
+          <span className="text-[15px] font-medium text-[#1A1A1A]">
             {inputPrice.split(" ")[0]}
           </span>
           <span className="text-[11px] text-[#999999] block mt-0.5">
@@ -284,7 +284,7 @@ function ModelCard({
           <span className="text-[11px] text-[#999999] uppercase tracking-wider block mb-1">
             CACHED INPUT
           </span>
-          <span className="text-[15px] font-medium text-[#1A1A1A] font-[family-name:var(--font-mono)]">
+          <span className="text-[15px] font-medium text-[#1A1A1A]">
             {cachedInputPrice.split(" ")[0]}
           </span>
           <span className="text-[11px] text-[#999999] block mt-0.5">
@@ -295,7 +295,7 @@ function ModelCard({
           <span className="text-[11px] text-[#999999] uppercase tracking-wider block mb-1">
             OUTPUT
           </span>
-          <span className="text-[15px] font-medium text-[#1A1A1A] font-[family-name:var(--font-mono)]">
+          <span className="text-[15px] font-medium text-[#1A1A1A]">
             {outputPrice.split(" ")[0]}
           </span>
           <span className="text-[11px] text-[#999999] block mt-0.5">
@@ -360,7 +360,7 @@ function ApiTable({ rows }: { rows: ApiRow[] }) {
             {row.description}
           </div>
           <div className="px-4 py-3.5 flex items-center justify-end">
-            <span className="text-[13px] font-medium text-[#1A1A1A] font-[family-name:var(--font-mono)]">
+            <span className="text-[13px] font-medium text-[#1A1A1A]">
               {row.price}
             </span>
           </div>
@@ -391,7 +391,7 @@ function ServiceTierCard({
           </span>
         )}
       </div>
-      <div className="text-[28px] font-medium text-[#1A1A1A] tracking-tight font-[family-name:var(--font-mono)] mb-3">
+      <div className="text-[24px] font-medium text-[#1A1A1A] tracking-tight mb-3">
         {multiplier}
       </div>
       <p className="text-[13px] text-[#6B6B6B] leading-relaxed">
@@ -561,10 +561,10 @@ export default function ApisTab() {
               className="grid border-b border-[#EEEEEE] last:border-b-0 hover:bg-[#F8F8F8] transition-colors"
               style={{ gridTemplateColumns: "1fr 1fr" }}
             >
-              <div className="px-5 py-3.5 text-[13px] text-[#1A1A1A] font-medium font-[family-name:var(--font-mono)]">
+              <div className="px-5 py-3.5 text-[13px] text-[#1A1A1A] font-medium">
                 {row.range}
               </div>
-              <div className="px-5 py-3.5 text-[13px] font-medium text-[#F97316] font-[family-name:var(--font-mono)] text-right">
+              <div className="px-5 py-3.5 text-[13px] font-medium text-[#F97316] text-right">
                 {row.discount}
               </div>
             </div>

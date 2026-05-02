@@ -253,7 +253,7 @@ export default function Sidebar({ activeTab }: { activeTab: string }) {
   const config = sidebarConfigs[activeTab] || sidebarConfigs.apis;
 
   return (
-    <aside className="w-[160px] min-w-[160px] h-full bg-[#FAFAFA] border-r border-[#E8E8E8] flex flex-col">
+    <aside className="w-[200px] min-w-[200px] h-full bg-[#FAFAFA] border-r border-[#E8E8E8] flex flex-col">
       {/* Product header */}
       <div className="px-3 pt-4 pb-3 flex items-center gap-2 cursor-pointer">
         {config.productIcon}
