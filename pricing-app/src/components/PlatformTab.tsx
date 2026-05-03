@@ -149,7 +149,7 @@ const samvaadFaqQuestions = [
    STUDIO DATA
 ───────────────────────────────────────────── */
 
-const studioPlans = [
+const studioCreatorPlans = [
   {
     tier: "Free",
     price: "₹0",
@@ -182,6 +182,24 @@ const studioPlans = [
     ],
   },
   {
+    tier: "Team",
+    price: "₹4,999",
+    cadence: "/mo",
+    cta: "Get Team",
+    highlighted: false,
+    features: [
+      { text: "6,000 Studio credits/month" },
+      { text: "~750 dubbed minutes" },
+      { text: "3 team members" },
+      { text: "Instant voice cloning (3 voices)" },
+      { text: "Unlimited projects" },
+      { text: "Email support · 1 business day" },
+    ],
+  },
+];
+
+const studioOrgPlans = [
+  {
     tier: "Scale",
     price: "₹49,999",
     cadence: "/mo",
@@ -191,7 +209,7 @@ const studioPlans = [
       { text: "80,000 Studio credits/month" },
       { text: "~10,000 dubbed minutes" },
       { text: "15 team members" },
-      { text: "Custom voices (up to 10)" },
+      { text: "Custom voices (consent-based, up to 10)" },
       { text: "Studio API access for pipelines" },
       { text: "SSO / SCIM" },
     ],
@@ -228,7 +246,19 @@ const studioCompareRows = [
     label: "Team members",
     values: ["1", "1", "3", "15", "Unlimited"],
   },
+  {
+    label: "Projects",
+    values: ["1", "10", "Unlimited", "Unlimited", "Unlimited"],
+  },
+  {
+    label: "API credit overflow when exhausted",
+    values: [true, true, true, true, true],
+  },
   { label: "DUBBING", values: [], isSection: true },
+  {
+    label: "Languages",
+    values: ["11 + EN", "11 + EN", "11 + EN", "11 + EN", "Custom"],
+  },
   {
     label: "Video dubbing",
     values: ["Watermark", true, true, true, true],
@@ -485,9 +515,9 @@ function StudioSubTab() {
         </span>
       </div>
 
-      {/* Plans */}
-      <div className="grid grid-cols-4 gap-4">
-        {studioPlans.map((plan, i) => (
+      {/* Creator Plans */}
+      <div className="grid grid-cols-3 gap-4">
+        {studioCreatorPlans.map((plan, i) => (
           <PricingCard key={i} {...plan} />
         ))}
       </div>
@@ -497,6 +527,13 @@ function StudioSubTab() {
         <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[#999999]">
           FOR ORGANIZATIONS
         </span>
+      </div>
+
+      {/* Organization Plans */}
+      <div className="grid grid-cols-2 gap-4">
+        {studioOrgPlans.map((plan, i) => (
+          <PricingCard key={i} {...plan} />
+        ))}
       </div>
 
       {/* Dark banner */}
