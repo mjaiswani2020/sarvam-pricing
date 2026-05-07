@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Home as HomeIcon,
   Grid3X3,
@@ -32,11 +32,59 @@ export default function PricingPage() {
   // Pricing tab — only changes via the top tab bar or platform sub-tabs
   const [activeTab, setActiveTab] = useState("apis");
   const [platformSubTab, setPlatformSubTab] = useState("samvaad");
+  const [showLoomModal, setShowLoomModal] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem("loom-modal-dismissed");
+    if (!dismissed) {
+      setShowLoomModal(true);
+    }
+  }, []);
+
+  const dismissModal = () => {
+    localStorage.setItem("loom-modal-dismissed", "true");
+    setShowLoomModal(false);
+  };
 
   const activePlatformCredit = platformCredits[activeProduct] ?? null;
 
   return (
     <div className="flex h-screen overflow-hidden">
+      {/* Loom intro modal */}
+      {showLoomModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl w-[720px] max-w-[90vw] overflow-hidden">
+            <div className="px-6 pt-6 pb-4">
+              <h2 className="text-[18px] font-medium text-[#1A1A1A]">
+                Before you explore the prototype
+              </h2>
+              <p className="text-[14px] text-[#6B6B6B] mt-1">
+                I recommend watching this short Loom walkthrough before you
+                browse the prototype — it&apos;ll give you the full context.
+              </p>
+            </div>
+            <div className="px-6">
+              <div className="relative w-full rounded-lg overflow-hidden" style={{ paddingBottom: "64.8%" }}>
+                <iframe
+                  src="https://www.loom.com/embed/eeae3e30822c4cd1926614f17f5bf036"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+            </div>
+            <div className="px-6 py-5 flex items-center justify-end">
+              <button
+                onClick={dismissModal}
+                className="px-5 py-2 text-[13px] font-medium text-white bg-[#1A1A1A] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+              >
+                I&apos;ve watched the Loom — Continue to prototype
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Sidebar */}
       <Sidebar activeTab={activeProduct} onProductChange={setActiveProduct} />
 
