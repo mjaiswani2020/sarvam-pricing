@@ -73,12 +73,15 @@ export default function PricingPage() {
                 />
               </div>
             </div>
-            <div className="px-6 py-5 flex items-center justify-end">
+            <div className="px-6 py-5 flex items-center justify-between">
+              <p className="text-[12px] text-[#ABABAB]">
+                You can always re-watch from the link later.
+              </p>
               <button
                 onClick={dismissModal}
-                className="px-5 py-2 text-[13px] font-medium text-white bg-[#1A1A1A] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
+                className="px-5 py-2.5 text-[13px] font-medium text-white bg-[#1A1A1A] rounded-lg hover:bg-[#333] transition-colors cursor-pointer"
               >
-                I&apos;ve watched the Loom — Continue to prototype
+                Continue to prototype →
               </button>
             </div>
           </div>
